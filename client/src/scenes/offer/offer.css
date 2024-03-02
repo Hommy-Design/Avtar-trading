@@ -1,0 +1,49 @@
+#BannerImage {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  #BannerImage > img {
+    width: 11vmax;
+    margin: 10 0.5vmax;
+    border-radius: 32px;
+
+  }
+
+  .dynamic-form {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .form-field {
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+  .form-field  label{
+    margin: 2px;
+  }
+  
+  .dynamic-input {
+    flex: 1;
+    margin-right: 5px;
+  }
+  
+  .dynamic-button {
+    cursor: pointer;
+    color: red;
+  }
+  
+  .add-button {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .submit-button {
+    background-color: #008CBA;
+    color: #fff;
+    margin-top: 10px;
+  }
+  .file-label {
+    display: block;
+  }

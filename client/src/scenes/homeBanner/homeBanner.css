@@ -1,0 +1,9 @@
+#BannerImage {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  #BannerImage > img {
+    width: 25vmax;
+    margin: 0 0.5vmax;
+  }

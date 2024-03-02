@@ -1,0 +1,34 @@
+.image-container {
+    position: relative;
+    /* overflow: hidden; */
+    width: 620px; /* Adjust as needed */
+    height: 620px; /* Adjust as needed */
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .zoomed-image {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .image-container:hover .image {
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+  }
+  
+  .image-container:hover .zoomed-image {
+    transform: translateX(0);
+  }
+  
