@@ -81,7 +81,7 @@
     "swiper": "^9.1.1",
     "web-vitals": "^2.1.4",
     "world-countries": "^4.0.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
     "vite": "^4.2.0"
   },
   "devDependencies": {
@@ -90,7 +90,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
+    "tailwindcss": "^3.4.0"
   },
   "engines" : { 
     "node" : "17.0.0"
