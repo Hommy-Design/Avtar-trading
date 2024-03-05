@@ -31,7 +31,6 @@ import {
   Radio,
 } from '@mui/material';
 import Residencies from "../../components/Residencies/Residencies.jsx";
-import ReactImageMagnify from 'react-image-magnify';
 import Modal from '@mui/material/Modal';
 import Backdrop from '@mui/material/Backdrop';
 import { Carousel as Caru } from "@material-tailwind/react";
