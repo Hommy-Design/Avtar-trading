@@ -47,6 +47,10 @@ import PhoneVerify from "./components/PhoneVerify/PhoneVerify";
 import Delivery from "./scenes/delivery/delivery";
 import PopularProduct from "./scenes/popularproduct/popularproduct";
 import Offer from "./scenes/offer/offer";
+import PrivcyPolice from "./pages/PrivcyPolice";
+import TermsCondtion from "./pages/TermsCondtion";
+import ShoppingPolicy from "./pages/ShoppingPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 
 
 
@@ -174,6 +178,10 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/offers" element={<OfferPage />} />
             <Route path="/phone" element={<PhoneVerify />} />
+            <Route path="/privacypolicy" element={<PrivcyPolice />} />
+            <Route path="/termcondition" element={<TermsCondtion />} />
+            <Route path="/shoppingpolicy" element={<ShoppingPolicy />} />
+            <Route path="/refundpolicy" element={<RefundPolicy />} />
           </Route>
         </Routes>
       </Suspense>

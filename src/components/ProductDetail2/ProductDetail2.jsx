@@ -267,21 +267,31 @@ const ProductDetail2 = () => {
                         </Button>
 
                     </Grid>
-                    {productDetail?.stripes && productDetail?.stripes.map((item, index) => (
+                    <Grid item xs={12} style={{display:'flex' , justifyContent:'center'}}>
 
-                        <Grid item xs={3} key={index} style={index === 0? {marginLeft:'8rem'}:{}}>
-                            <div className="apx" >
-                                <div className="main-image-container">
-                                    <img src={item.pic.url} alt="Main" className="main-image" />
-                                    <div className="mini-details">
-                                        <h4 className="product-name">{item.name}</h4>
-                                        <p className="product-price">₹{item.price}</p>
-                                    </div>
-                                </div>
+                        {productDetail?.stripes && productDetail?.stripes.map((item, index) => {
+                            return (
+                                <>
 
-                            </div>
-                        </Grid>
-                    ))}
+
+                                    <Grid item xs={3} key={index} style={index === 0 ? { marginLeft: '8rem' } : {}}>
+                                        <div className="apx" >
+                                            <div className="main-image-container">
+                                                <img src={item.pic.url} alt="Main" className="main-image" />
+                                                <div className="mini-details">
+                                                    <h4 className="product-name">{item.name}</h4>
+                                                    <p className="product-price">₹{item.price}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </Grid>
+
+
+                                </>
+                            )
+                        })}
+                    </Grid>
                 </Grid>
 
 

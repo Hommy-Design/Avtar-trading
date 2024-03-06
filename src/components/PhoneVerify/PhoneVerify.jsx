@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dialog, DialogContent, Button } from '@mui/material';
 import './Phoneverify.css'
 import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
@@ -15,7 +15,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '../../redux/slices/userSlice';
 import { userloginSuccess } from '../../redux/slices/userlogin';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../redux/actions/userAction';
+import { login, register } from '../../redux/actions/userAction';
+import axios from 'axios';
 
 const PhoneVerify = ({ open, onClose }) => {
 
@@ -26,6 +27,8 @@ const PhoneVerify = ({ open, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [aa, setaa] = useState(null);
+  const [otpNumber, setOtpNumber] = useState();
+  const [status, setStatus] = useState({});
 
   let dispatch = useDispatch()
 
@@ -33,23 +36,41 @@ const PhoneVerify = ({ open, onClose }) => {
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
+  const [data, setData] = useState({
+
+    apiKey: '461EE616B37B44',
+    contacts: '6352580806',
+    from: 'SPTSMS',
+    smsText: 'Dear People, have a great day',
+    templateId: '1234567890'
+  })
+
+
+  // useEffect(() => {
+  //   const apiUrl = `http://msg.pwasms.com/app/smsapi/index.php?key=${data.apiKey}&campaign=0&routeid=9&type=text&contacts=${data.contacts}&senderid=${data.from}&msg=${encodeURIComponent(data.smsText)}&template_id=${data.templateId}`;
+  //   const config = { headers: { 'Content-Type': 'application/json' } }
+  //   axios.get(apiUrl, config)
+
+
+  // })
+  //Submit to server
 
   function onSignup() {
     // setLoading(true);
     // onCaptchVerify();
 
-const userfrm = new FormData();
-userfrm.append('name', name)
-userfrm.append('email', email)
-userfrm.append('password', password)
+    const userfrm = new FormData();
+    userfrm.append('name', name)
+    userfrm.append('email', email)
+    userfrm.append('password', password)
 
-console.log(Object.fromEntries(userfrm));
+    console.log(Object.fromEntries(userfrm));
 
-dispatch(register(email, name, password))
+    dispatch(register(email, name, password))
 
 
 
-      setShowOTP(true)
+    setShowOTP(true)
 
 
     // const appVerifier = window.recaptchaVerifier;
@@ -71,10 +92,17 @@ dispatch(register(email, name, password))
 
 
   function onOTPVerify() {
-    if (otp === '123456') {
+    setLoading(true);
+    console.log(otpNumber, otp)
+    if (otp == otpNumber) {
       dispatch(userloginSuccess())
+      localStorage.setItem('user' , name )
+      localStorage.setItem('Number' , email )
+      setLoading(false);
+      toast.success("Login successfully!");
+    } else {
+      toast.error("Your OTP is wrong!");
     }
-    // setLoading(true);
 
     // window.confirmationResult
     //   .confirm(otp)
@@ -89,17 +117,57 @@ dispatch(register(email, name, password))
     //   });
   }
 
+  const [url, setUrl] = useState({
+    apiKey: '461EE616B37B44',
+    from: 'SPTSMS',
+    templateId: '1707166619134631839'
+  });
+
+
+
+
+
+  const handleSendOtp = () => {
+    setLoading(true);
+    const otpValue = Math.floor(100000 + Math.random() * 900000);
+
+    setOtpNumber(otpValue);
+
+    const message = `Your OTP is ${otpValue} SELECTIAL`;
+    console.log(email, 'email')
+
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    console.log(requestOptions, 'requestOptions')
+    let api_url = ` http://msg.pwasms.com/app/smsapi/index.php?key=${url.apiKey}&campaign=0&routeid=9&type=text&contacts=${email && email}&senderid=${url.from}&msg=${message}&template_id=1707166619134631839`
+
+
+    fetch(api_url, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
+    setLoading(false);
+
+    setShowOTP(true)
+
+
+  };
+
+
 
 
   return (
     <>
       <Dialog open={open} onClose={onClose} fullWidth>
         <DialogContent style={{ height: '90vh' }}>
-          <section className="bg-emerald-500 flex items-center justify-center h-screen">
+          <section className="bg-emerald-500 flex items-center justify-center " style={{ height: "100%" }}>
             <div>
               {/* <Toaster toastOptions={{ duration: 4000 }} /> */}
               <div id="recaptcha-container"></div>
-              {aa? (
+              {aa ? (
                 <h2 className="text-center text-white font-medium text-2xl">
                   👍Login Success
                 </h2>
@@ -143,12 +211,12 @@ dispatch(register(email, name, password))
                       <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
                         <BsTelephoneFill size={30} />
                       </div>
-                      <input type="text" name='name' placeholder='Enter Your Name' className='h-10 rounded-sm' onChange={(e) => setName(e.target.value)} />
+                      <input type="text" name='name' placeholder='Enter Your Name' className='h-10 rounded-sm' onChange={(e) => setName(e.target.value)} style={{ padding: "10px" }} />
                       <PhoneInput country={"in"} value={email} onChange={setEmail} />
-                      <input type="password" name='password' placeholder='Enter Your Password' className='h-10 rounded-sm' onChange={(e) => setPassword(e.target.value)} />
+                      {/* <input type="password" name='password' placeholder='Enter Your Password' className='h-10 rounded-sm' onChange={(e) => setPassword(e.target.value)} style={{ padding: "10px" }} /> */}
 
                       <button
-                        onClick={onSignup}
+                        onClick={handleSendOtp}
                         className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
                       >
                         {loading && (

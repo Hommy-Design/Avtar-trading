@@ -36,9 +36,9 @@ const Categories = () => {
     animateOut: 'slideOutUp',
     nav: false,
     dots: false,
-    mouseDrag:true,
+    mouseDrag: true,
     margin: 1,
-    autoplayHoverPause:true,
+    autoplayHoverPause: true,
     responsive: {
       1100: {
         items: 8,
@@ -82,45 +82,45 @@ const Categories = () => {
     )
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getcategory())
 
-  },[dispatch])
+  }, [dispatch])
 
 
 
   return (
     <div id="residencies" className="r-wrapper">
-      <div className="paddings innerWidth r-container" style={{paddingLeft:'5rem', paddingRight:'5rem'}}>
+      <div className="paddings innerWidth r-container" style={{ paddingLeft: '5rem', paddingRight: '5rem' }}>
         <div className="flexColStart r-head">
           <span className="primaryText flexcenter">Shop By Category</span>
         </div>
-          {/* <SlideNextButton /> */}
-          {/* slider */}
-          {/* {data.slice(0, 8).map((card, i) => (
+        {/* <SlideNextButton /> */}
+        {/* slider */}
+        {/* {data.slice(0, 8).map((card, i) => (
             <SwiperSlide key={i}>
               <PropertyCard card={card}/>
             </SwiperSlide>
           ))} */}
 
-<div className=" flexCenter properties">
+        <div className=" flexCenter properties">
 
 
 
 
 
 
-{category?.map((data, index)=>(
-  <CategoryCard card={ {
-    id:data?._id,
-    image:data?.image?.url,
-    title:data?.name,
-  }} key={index} />
-))}
+          {category?.map((data, index) => (
+            <CategoryCard card={{
+              id: data?._id,
+              image: data?.image?.url,
+              title: data?.name,
+            }} key={index} />
+          ))}
 
 
 
-  </div>
+        </div>
 
 
 
