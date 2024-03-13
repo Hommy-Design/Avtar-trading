@@ -35,6 +35,7 @@
     "@nivo/line": "^0.80.0",
     "@nivo/pie": "^0.80.0",
     "@reduxjs/toolkit": "^1.9.7",
+    "@vitejs/plugin-react": "^3.1.0",
     "axios": "^1.6.0",
     "chart.js": "^3.9.1",
     "dayjs": "^1.11.9",
@@ -71,20 +72,19 @@
     "react-transition-group": "^4.4.5",
     "reactjs-popup": "^2.0.6",
     "swiper": "^9.1.1",
+    "vite": "^4.2.0",
     "web-vitals": "^2.1.4",
     "world-countries": "^4.0.0",
-    "yup": "^0.32.11",
-    "vite": "^4.2.0",
-    "@vitejs/plugin-react": "^3.1.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/react": "^17.0.76",
+    "@types/react-dom": "^17.0.25",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0"
   },
-  "engines" : { 
-    "node" : "17.0.0"
+  "engines": {
+    "node": "17.0.0"
   }
 }
